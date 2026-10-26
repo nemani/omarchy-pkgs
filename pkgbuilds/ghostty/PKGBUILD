@@ -64,7 +64,8 @@ prepare() {
 
 build() {
   cd "$_archive"
-  # Arch Linux ARM does not package pandoc, which generates the documentation.
+  # Build and install docs only on x86_64, using its pandoc-cli build dependency.
+  # Keep docs disabled on aarch64 because Arch Linux ARM does not package pandoc.
   local emit_docs=false
   if [[ "$CARCH" == x86_64 ]]; then
     emit_docs=true
